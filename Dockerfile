@@ -20,8 +20,8 @@ COPY . .
 # Build the application
 RUN go build -ldflags='-w -s' -o tcp-echo .
 
-# Final stage using scratch (smallest possible image)
-FROM scratch
+
+FROM busybox
 
 # Copy the binary from builder
 COPY --from=builder /app/tcp-echo /tcp-echo
